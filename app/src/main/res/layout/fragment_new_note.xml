@@ -13,11 +13,11 @@
         android:layout_width="match_parent"
         android:fitsSystemWindows="true"
         android:layout_height="match_parent"
-        android:background="@android:color/darker_gray"
+        android:background="@android:color/holo_orange_light"
         tools:context=".view.fragments.NewNoteFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:background="@android:color/darker_gray"
+            android:background="@android:color/holo_orange_light"
             android:elevation="4dp"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"/>
@@ -35,6 +35,8 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 android:gravity="end"
+                android:textColor="@color/white"
+                app:fontFamily="@font/poppins_sb"
                 android:textSize="15sp"
                 android:layout_marginTop="17dp"
                 android:text="@{note.date}"
@@ -48,6 +50,7 @@
                 app:boxStrokeWidth="0dp"
                 app:hintEnabled="false"
                 app:counterEnabled="true"
+                app:counterTextColor="@color/white"
                 app:counterMaxLength="75"
                 android:layout_height="wrap_content">
 
@@ -55,7 +58,15 @@
                     android:id="@+id/title_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:maxLines="3"
+                    android:inputType="textCapSentences|textMultiLine"
                     android:text="@{note.title}"
+                    android:textCursorDrawable="@drawable/cursor_bg"
+                    android:textColor="@color/white"
+                    android:maxLength="75"
+                    android:textColorHint="@color/white_transparent"
+                    app:fontFamily="@font/poppins_sb"
                     android:hint="@string/note_title_here"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -67,6 +78,7 @@
                 android:background="@android:color/white"
                 app:layout_constraintTop_toBottomOf="@id/title_field"
                 android:layout_width="45dp"
+                android:textColor="@color/white"
                 android:layout_height="3dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -75,16 +87,20 @@
                 android:layout_width="match_parent"
                 app:boxBackgroundMode="none"
                 app:boxStrokeWidth="0dp"
+                android:inputType="textMultiLine"
                 app:hintEnabled="false"
-                app:counterEnabled="true"
-                app:counterMaxLength="500"
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/description_text"
+                    android:imeOptions="actionDone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{note.description}"
+                    app:fontFamily="@font/poppins_sb"
+                    android:textColor="@color/white"
+                    android:textCursorDrawable="@drawable/cursor_bg"
+                    android:textColorHint="@color/white_transparent"
                     android:hint="@string/description_here"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -95,8 +111,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
+            android:tint="@android:color/white"
             app:elevation="3dp"
             app:fabSize="normal"
+            app:backgroundTint="@android:color/white"
             android:src="@drawable/ic_done"
             android:layout_margin="16dp" />
 
