@@ -17,9 +17,11 @@
         tools:context=".view.fragments.NewNoteFragment">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:background="@android:color/holo_orange_light"
+            android:id="@+id/toolBar"
+            android:background="@android:color/white"
             android:elevation="4dp"
             android:layout_width="match_parent"
+            app:navigationIcon="@drawable/ic_left_arrow"
             android:layout_height="?attr/actionBarSize"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,12 +61,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionDone"
-                    android:maxLines="3"
+                    android:maxLines="2"
                     android:inputType="textCapSentences|textMultiLine"
                     android:text="@{note.title}"
                     android:textCursorDrawable="@drawable/cursor_bg"
                     android:textColor="@color/white"
                     android:maxLength="75"
+                    android:textSize="18sp"
                     android:textColorHint="@color/white_transparent"
                     app:fontFamily="@font/poppins_sb"
                     android:hint="@string/note_title_here"/>
@@ -98,6 +101,7 @@
                     android:layout_height="wrap_content"
                     android:text="@{note.description}"
                     app:fontFamily="@font/poppins_sb"
+                    android:textSize="17sp"
                     android:textColor="@color/white"
                     android:textCursorDrawable="@drawable/cursor_bg"
                     android:textColorHint="@color/white_transparent"
@@ -108,6 +112,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnAddNote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
