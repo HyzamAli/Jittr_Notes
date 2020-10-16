@@ -11,7 +11,9 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_toNewNote"
-            app:destination="@id/newNoteFragment" />
+            app:destination="@id/newNoteFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:popExitAnim="@anim/anim_slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/newNoteFragment"

@@ -3,6 +3,7 @@ package com.upsoul.jittrnotes.view.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -19,7 +20,8 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 public class NewNoteFragment extends Fragment {
-    FragmentNewNoteBinding binding;
+    private FragmentNewNoteBinding binding;
+    private Note note;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -31,10 +33,12 @@ public class NewNoteFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Note note = new Note(generateColorIndex());
+        binding.toolBar.inflateMenu(R.menu.menu_add_note);
+        note = new Note(generateColorIndex());
         binding.setNote(note);
 
         binding.toolBar.setNavigationOnClickListener(view1 -> NavHostFragment.findNavController(this).popBackStack());
+        binding.toolBar.setOnMenuItemClickListener(this::onOptionsItemSelected);
         binding.btnAddNote.setOnClickListener(view1 -> hideKeyboard(requireActivity()));
     }
 
@@ -61,6 +65,11 @@ public class NewNoteFragment extends Fragment {
         binding.getRoot().setBackgroundColor(color);
         binding.btnAddNote.setColorFilter(color);
         binding.toolBar.getNavigationIcon().setTint(color);
+
+//        MenuItem favoriteItem = binding.toolBar.getMenu().findItem(R.id.menu_favourite);
+//        Drawable newIcon = favoriteItem.getIcon();
+//        newIcon.mutate().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+//        favoriteItem.setIcon(newIcon);
     }
 
 
@@ -68,5 +77,21 @@ public class NewNoteFragment extends Fragment {
     public void onDestroyView() {
         binding = null;
         super.onDestroyView();
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.menu_favourite) {
+            if (note.getPriority() == 0) {
+                note.setPriority(1);
+                item.setIcon(R.drawable.ic_star_fill);
+            } else {
+                note.setPriority(0);
+                item.setIcon(R.drawable.ic_star);
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

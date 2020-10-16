@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -11,25 +12,37 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:fitsSystemWindows="true"
         android:layout_height="match_parent"
         android:background="@android:color/holo_orange_light"
+        android:fitsSystemWindows="false"
         tools:context=".view.fragments.NewNoteFragment">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolBar"
-            android:background="@android:color/white"
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
             android:elevation="4dp"
-            android:layout_width="match_parent"
-            app:navigationIcon="@drawable/ic_left_arrow"
-            android:layout_height="?attr/actionBarSize"/>
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_marginTop="?attr/actionBarSize"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolBar"
+                android:background="@android:color/white"
+                android:elevation="4dp"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/ic_left_arrow"
+                tools:menu="@menu/menu_add_note"
+                android:layout_height="?attr/actionBarSize"/>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/date"
@@ -90,7 +103,6 @@
                 android:layout_width="match_parent"
                 app:boxBackgroundMode="none"
                 app:boxStrokeWidth="0dp"
-                android:inputType="textMultiLine"
                 app:hintEnabled="false"
                 android:layout_height="wrap_content">
 
@@ -100,7 +112,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{note.description}"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:isScrollContainer="true"
                     app:fontFamily="@font/poppins_sb"
+                    android:maxLength="700"
                     android:textSize="17sp"
                     android:textColor="@color/white"
                     android:textCursorDrawable="@drawable/cursor_bg"
@@ -109,7 +124,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnAddNote"
