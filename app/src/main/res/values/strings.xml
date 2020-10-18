@@ -7,4 +7,6 @@
     <string name="description_here">Description Here</string>
     <string name="favourite">Favourite</string>
     <string name="remove_from_favourites">Remove from Favourites</string>
+    <string name="all_notes">All Notes</string>
+    <string name="starred_notes">Starred Notes</string>
 </resources>

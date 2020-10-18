@@ -7,25 +7,31 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import com.upsoul.jittrnotes.R;
 import com.upsoul.jittrnotes.data.models.Note;
+import com.upsoul.jittrnotes.data.models.STATUS;
 import com.upsoul.jittrnotes.databinding.FragmentNewNoteBinding;
+import com.upsoul.jittrnotes.viewmodel.NotesViewModel;
 
 import java.util.Random;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 public class NewNoteFragment extends Fragment {
     private FragmentNewNoteBinding binding;
+    private NotesViewModel viewModel;
     private Note note;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        viewModel = new ViewModelProvider(requireActivity()).get(NotesViewModel.class);
         binding = FragmentNewNoteBinding.inflate(getLayoutInflater(), container, false);
         return binding.getRoot();
     }
@@ -39,7 +45,29 @@ public class NewNoteFragment extends Fragment {
 
         binding.toolBar.setNavigationOnClickListener(view1 -> NavHostFragment.findNavController(this).popBackStack());
         binding.toolBar.setOnMenuItemClickListener(this::onOptionsItemSelected);
-        binding.btnAddNote.setOnClickListener(view1 -> hideKeyboard(requireActivity()));
+        binding.btnAddNote.setOnClickListener(view1 -> {
+            hideKeyboard(requireActivity());
+            addNote();
+        });
+    }
+
+    @SuppressWarnings("ConstantConditions")
+    private boolean validNote() {
+        // if title or description is empty return false else return true
+        if (binding.titleText.getText().toString().trim().isEmpty() && binding.descriptionText.getText().toString().trim().isEmpty()) {
+            return false;
+        }
+        note.setTitle(binding.titleText.getText().toString().trim());
+        note.setDescription(binding.descriptionText.getText().toString().trim());
+        return true;
+    }
+
+    private void addNote() {
+        if (!validNote()) return;
+        viewModel.insertNewNote(note).observe(getViewLifecycleOwner(), response -> {
+            if (response.getStatus() == STATUS.SUCCESS) Toast.makeText(requireActivity(), "Successful", Toast.LENGTH_SHORT).show();
+            if (response.getStatus() == STATUS.FAIL) Toast.makeText(requireActivity(), "Failed", Toast.LENGTH_SHORT).show();
+        });
     }
 
     private int generateColorIndex() {
@@ -66,6 +94,7 @@ public class NewNoteFragment extends Fragment {
         binding.btnAddNote.setColorFilter(color);
         binding.toolBar.getNavigationIcon().setTint(color);
 
+        //TODO: undo commenting when adding refresh button
 //        MenuItem favoriteItem = binding.toolBar.getMenu().findItem(R.id.menu_favourite);
 //        Drawable newIcon = favoriteItem.getIcon();
 //        newIcon.mutate().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
