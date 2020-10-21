@@ -43,6 +43,30 @@ public class HomeFragment extends Fragment {
         binding.btnNew.setOnClickListener(view1 ->  NavHostFragment.findNavController(this).navigate(R.id.action_toNewNote));
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setGreetings();
+    }
+
+    private void setGreetings() {
+        binding.greetingsText.setText(viewModel.greetingsText());
+        switch (viewModel.greetingsText()) {
+            case "Good\nMorning":
+                binding.greetingsIcon.setBackgroundResource(R.drawable.morning);
+                break;
+            case "Good\nAfternoon":
+                binding.greetingsIcon.setBackgroundResource(R.drawable.noon);
+                break;
+            case "Good\nEvening":
+                binding.greetingsIcon.setBackgroundResource(R.drawable.evening);
+                break;
+            default:
+                binding.greetingsIcon.setBackgroundResource(R.drawable.moon);
+                break;
+        }
+    }
+
     private void getAllNotes() {
         viewModel.getAllNotes().observe(getViewLifecycleOwner(), response -> {
             if (response.getStatus() == STATUS.SUCCESS) {
@@ -54,8 +78,14 @@ public class HomeFragment extends Fragment {
                 }
 
                 //TODO: view when no starred notes are found
-                binding.allNotesList.setAdapter(new NotesListAdapter(response.getData()));
-                binding.starredNotesList.setAdapter(new NotesListAdapter(starredNotes));
+                binding.allNotesList.setAdapter(new NotesListAdapter(response.getData(), position -> {
+                    viewModel.setCurrentNote(response.getData().get(position));
+                    NavHostFragment.findNavController(this).navigate(R.id.action_toViewNote);
+                }));
+                binding.starredNotesList.setAdapter(new NotesListAdapter(starredNotes, position -> {
+                    viewModel.setCurrentNote(starredNotes.get(position));
+                    NavHostFragment.findNavController(this).navigate(R.id.action_toViewNote);
+                }));
 
 
             } else {

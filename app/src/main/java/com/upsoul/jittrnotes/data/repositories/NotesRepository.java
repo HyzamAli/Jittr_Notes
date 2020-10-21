@@ -61,4 +61,18 @@ public class NotesRepository {
         });
         return data;
     }
+
+    //------ UPDATE NOTE ------
+    public LiveData<Response<Integer>> updateNote(Note note) {
+        MutableLiveData<Response<Integer>> data = new MutableLiveData<>();
+        database.getQueryExecutor().execute(() -> {
+            try {
+                notesDao.updateNote(note);
+                data.postValue(new Response<>(STATUS.SUCCESS));
+            } catch (Exception e) {
+                data.postValue(new Response<>(STATUS.FAIL));
+            }
+        });
+        return data;
+    }
 }

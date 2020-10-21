@@ -13,6 +13,13 @@
             android:id="@+id/action_toNewNote"
             app:destination="@id/newNoteFragment"
             app:enterAnim="@anim/anim_slide_in_right"
+            app:launchSingleTop="true"
+            app:popExitAnim="@anim/anim_slide_out_right" />
+        <action
+            android:id="@+id/action_toViewNote"
+            app:destination="@id/viewNoteFragment"
+            app:enterAnim="@anim/anim_slide_in_right"
+            app:launchSingleTop="true"
             app:popExitAnim="@anim/anim_slide_out_right" />
     </fragment>
     <fragment
@@ -20,4 +27,9 @@
         android:name="com.upsoul.jittrnotes.view.fragments.NewNoteFragment"
         android:label="fragment_new_note"
         tools:layout="@layout/fragment_new_note" />
+    <fragment
+        android:id="@+id/viewNoteFragment"
+        android:name="com.upsoul.jittrnotes.view.fragments.ViewNoteFragment"
+        android:label="fragment_view_note"
+        tools:layout="@layout/fragment_view_note" />
 </navigation>

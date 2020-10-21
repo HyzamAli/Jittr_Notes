@@ -7,6 +7,7 @@ import java.util.List;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 @Dao
 public interface Notes_DAO {
@@ -16,4 +17,7 @@ public interface Notes_DAO {
 
     @Query("SELECT * FROM NOTES_TABLE ORDER BY TIME_STAMP DESC")
     List<Note> getAllNotes();
+
+    @Update
+    void updateNote(Note note);
 }

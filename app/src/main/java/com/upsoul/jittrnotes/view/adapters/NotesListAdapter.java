@@ -14,9 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.ViewHolder> {
     private List<Note> notes;
+    onListItemClickListener listener;
 
-    public NotesListAdapter(List<Note> notes) {
+    public NotesListAdapter(List<Note> notes, onListItemClickListener listener) {
         this.notes = notes;
+        this.listener = listener;
     }
 
     @NonNull
@@ -30,6 +32,7 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.View
         holder.binding.setNote(notes.get(position));
         int[] colorsList = holder.binding.getRoot().getContext().getResources().getIntArray(R.array.colors_list);
         holder.binding.card.setCardBackgroundColor(colorsList[notes.get(position).getColor()]);
+        holder.binding.getRoot().setOnClickListener(view -> listener.onNotesItemClicked(position));
     }
 
     @Override
@@ -43,5 +46,9 @@ public class NotesListAdapter extends RecyclerView.Adapter<NotesListAdapter.View
             super(binding.getRoot());
             this.binding = binding;
         }
+    }
+
+    public interface onListItemClickListener {
+        void onNotesItemClicked(int position);
     }
 }
