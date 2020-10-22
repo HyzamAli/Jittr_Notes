@@ -50,8 +50,9 @@ public class HomeFragment extends Fragment {
     }
 
     private void setGreetings() {
-        binding.greetingsText.setText(viewModel.greetingsText());
-        switch (viewModel.greetingsText()) {
+        String greetingsText = viewModel.greetingsText();
+        binding.greetingsText.setText(greetingsText);
+        switch (greetingsText) {
             case "Good\nMorning":
                 binding.greetingsIcon.setBackgroundResource(R.drawable.morning);
                 break;

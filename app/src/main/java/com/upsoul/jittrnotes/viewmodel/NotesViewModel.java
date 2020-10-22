@@ -1,7 +1,6 @@
 package com.upsoul.jittrnotes.viewmodel;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.upsoul.jittrnotes.data.models.Note;
 import com.upsoul.jittrnotes.data.models.Response;
@@ -27,7 +26,6 @@ public class NotesViewModel extends AndroidViewModel {
 
     public String greetingsText() {
         int currentHour = Calendar.getInstance().get(HOUR_OF_DAY);
-        Log.d("DEBUG_TAG", "greetingsText: "+currentHour);
         if (6<= currentHour && currentHour < 12) {
             return "Good\nMorning";
         } else if (12<= currentHour && currentHour < 15) {
@@ -49,7 +47,10 @@ public class NotesViewModel extends AndroidViewModel {
 
     public LiveData<Response<Integer>> insertNewNote(Note note) { return repository.insertNewNote(note); }
 
+    //TODO: check Live data response
     public LiveData<Response<Integer>> updateNote(Note note) { return repository.updateNote(note); }
+
+    public LiveData<Response<Integer>> deleteNote(Note note) { return repository.deleteNote(note); }
 
     public LiveData<Response<List<Note>>> getAllNotes() {
         return repository.getAllNotes();

@@ -1,14 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.fragments.ViewNoteFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="note"
+            type="com.upsoul.jittrnotes.data.models.Note" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@android:color/holo_orange_light"
+        android:fitsSystemWindows="false"
+        tools:context=".view.fragments.NewNoteFragment">
 
-</FrameLayout>
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="4dp"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolBar"
+                android:background="@android:color/white"
+                android:elevation="4dp"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/ic_left_arrow"
+                tools:menu="@menu/menu_add_note"
+                android:layout_height="?attr/actionBarSize"/>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                android:gravity="end"
+                android:textColor="@color/white"
+                app:fontFamily="@font/poppins_sb"
+                android:textSize="15sp"
+                android:layout_marginTop="17dp"
+                android:text="@{note.date}"
+                tools:text="01-01-2020"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/title_field"
+                app:layout_constraintTop_toBottomOf="@id/date"
+                android:layout_width="match_parent"
+                app:boxBackgroundMode="none"
+                app:boxStrokeWidth="0dp"
+                app:hintEnabled="false"
+                app:counterEnabled="true"
+                app:counterTextColor="@color/white"
+                app:counterMaxLength="75"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/title_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:maxLines="2"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:text="@{note.title}"
+                    android:textCursorDrawable="@drawable/cursor_bg"
+                    android:textColor="@color/white"
+                    android:maxLength="75"
+                    android:textSize="18sp"
+                    android:textColorHint="@color/white_transparent"
+                    app:fontFamily="@font/poppins_sb"
+                    android:hint="@string/note_title_here"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/divider"
+                android:layout_marginStart="10dp"
+                android:background="@android:color/white"
+                app:layout_constraintTop_toBottomOf="@id/title_field"
+                android:layout_width="45dp"
+                android:textColor="@color/white"
+                android:layout_height="3dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/description_field"
+                app:layout_constraintTop_toBottomOf="@id/divider"
+                android:layout_width="match_parent"
+                app:boxBackgroundMode="none"
+                app:boxStrokeWidth="0dp"
+                app:hintEnabled="false"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/description_text"
+                    android:imeOptions="actionDone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{note.description}"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:isScrollContainer="true"
+                    app:fontFamily="@font/poppins_sb"
+                    android:maxLength="700"
+                    android:textSize="17sp"
+                    android:textColor="@color/white"
+                    android:textCursorDrawable="@drawable/cursor_bg"
+                    android:textColorHint="@color/white_transparent"
+                    android:hint="@string/description_here"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

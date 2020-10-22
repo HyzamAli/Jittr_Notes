@@ -18,7 +18,7 @@ public class NotesRepository {
     private Notes_Database database;
     private Notes_DAO notesDao;
 
-    public NotesRepository(Application application) {
+    private NotesRepository(Application application) {
         database = Notes_Database.getInstance(application);
         notesDao = database.notesDao();
     }
@@ -68,6 +68,20 @@ public class NotesRepository {
         database.getQueryExecutor().execute(() -> {
             try {
                 notesDao.updateNote(note);
+                data.postValue(new Response<>(STATUS.SUCCESS));
+            } catch (Exception e) {
+                data.postValue(new Response<>(STATUS.FAIL));
+            }
+        });
+        return data;
+    }
+
+    //------ DELETE NOTE ------
+    public LiveData<Response<Integer>> deleteNote(Note note) {
+        MutableLiveData<Response<Integer>> data = new MutableLiveData<>();
+        database.getQueryExecutor().execute(() -> {
+            try {
+                notesDao.deleteNote(note);
                 data.postValue(new Response<>(STATUS.SUCCESS));
             } catch (Exception e) {
                 data.postValue(new Response<>(STATUS.FAIL));

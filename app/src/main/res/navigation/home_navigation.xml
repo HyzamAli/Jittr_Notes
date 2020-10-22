@@ -13,13 +13,17 @@
             android:id="@+id/action_toNewNote"
             app:destination="@id/newNoteFragment"
             app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_no_change"
             app:launchSingleTop="true"
+            app:popEnterAnim="@anim/anim_no_change"
             app:popExitAnim="@anim/anim_slide_out_right" />
         <action
             android:id="@+id/action_toViewNote"
             app:destination="@id/viewNoteFragment"
             app:enterAnim="@anim/anim_slide_in_right"
+            app:exitAnim="@anim/anim_no_change"
             app:launchSingleTop="true"
+            app:popEnterAnim="@anim/anim_no_change"
             app:popExitAnim="@anim/anim_slide_out_right" />
     </fragment>
     <fragment

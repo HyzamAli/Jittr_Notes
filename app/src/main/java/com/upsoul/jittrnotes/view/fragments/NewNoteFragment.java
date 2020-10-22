@@ -1,6 +1,8 @@
 package com.upsoul.jittrnotes.view.fragments;
 
 import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -94,11 +96,10 @@ public class NewNoteFragment extends Fragment {
         binding.btnAddNote.setColorFilter(color);
         binding.toolBar.getNavigationIcon().setTint(color);
 
-        //TODO: undo commenting when adding refresh button
-//        MenuItem favoriteItem = binding.toolBar.getMenu().findItem(R.id.menu_favourite);
-//        Drawable newIcon = favoriteItem.getIcon();
-//        newIcon.mutate().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-//        favoriteItem.setIcon(newIcon);
+        MenuItem favoriteItem = binding.toolBar.getMenu().findItem(R.id.menu_refresh_color);
+        Drawable newIcon = favoriteItem.getIcon();
+        newIcon.mutate().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        favoriteItem.setIcon(newIcon);
     }
 
 
@@ -107,7 +108,6 @@ public class NewNoteFragment extends Fragment {
         binding = null;
         super.onDestroyView();
     }
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -120,6 +120,8 @@ public class NewNoteFragment extends Fragment {
                 item.setIcon(R.drawable.ic_star);
             }
             return true;
+        } else if (item.getItemId() == R.id.menu_refresh_color) {
+            note.setColor(generateColorIndex());
         }
         return super.onOptionsItemSelected(item);
     }

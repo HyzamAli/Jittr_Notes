@@ -7,31 +7,31 @@
     <color name="white_transparent">#CCffffff</color>
     <color name="black">#000000</color>
 
-    <color name="bright_pink">#FF007F</color>
-    <color name="red">#FF0000</color>
-    <color name="orange">#FF7F00</color>
-    <color name="yellow">#FFFF00</color>
-    <color name="chartreuse">#7FFF00</color>
-    <color name="green">#00FF00</color>
-    <color name="spring_green">#00FF7F</color>
-    <color name="cyan">#00FFFF</color>
-    <color name="azure">#007FFF</color>
-    <color name="blue">#0000FF</color>
-    <color name="violet">#7F00FF</color>
-    <color name="magenta">#FF00FF</color>
+    <color name="p1">#a5a58d</color>
+    <color name="p2">#b5838d</color>
+    <color name="p3">#457b9d</color>
+    <color name="p4">#606c38</color>
+    <color name="p5">#2d6a4f</color>
+    <color name="p6">#4a4e69</color>
+    <color name="p7">#d08c60</color>
+    <color name="p8">#495057</color>
+    <color name="p9">#772e25</color>
+    <color name="p10">#e05780</color>
+    <color name="p11">#386fa4</color>
+    <color name="p12">#50514f</color>
 
     <array name="colors_list">
-        <item>@color/bright_pink</item>
-        <item>@color/red</item>
-        <item>@color/orange</item>
-        <item>@color/yellow</item>
-        <item>@color/chartreuse</item>
-        <item>@color/green</item>
-        <item>@color/spring_green</item>
-        <item>@color/cyan</item>
-        <item>@color/azure</item>
-        <item>@color/blue</item>
-        <item>@color/violet</item>
-        <item>@color/magenta</item>
+        <item>@color/p1</item>
+        <item>@color/p2</item>
+        <item>@color/p3</item>
+        <item>@color/p4</item>
+        <item>@color/p5</item>
+        <item>@color/p6</item>
+        <item>@color/p7</item>
+        <item>@color/p8</item>
+        <item>@color/p9</item>
+        <item>@color/p10</item>
+        <item>@color/p11</item>
+        <item>@color/p12</item>
     </array>
 </resources>

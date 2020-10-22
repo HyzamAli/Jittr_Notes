@@ -11,4 +11,5 @@
     <string name="starred_notes">Starred Notes</string>
     <string name="icon">Icon</string>
     <string name="button">button</string>
+    <string name="refresh">refresh</string>
 </resources>

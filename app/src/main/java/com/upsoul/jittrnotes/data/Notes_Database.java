@@ -7,7 +7,7 @@ import com.upsoul.jittrnotes.data.models.Note;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@androidx.room.Database(entities = {Note.class}, version = 1)
+@androidx.room.Database(entities = {Note.class}, version = 1, exportSchema = false)
 public abstract class Notes_Database extends RoomDatabase {
     private static volatile Notes_Database instance;
     public abstract Notes_DAO notesDao();
