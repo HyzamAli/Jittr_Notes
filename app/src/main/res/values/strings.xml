@@ -12,4 +12,9 @@
     <string name="icon">Icon</string>
     <string name="button">button</string>
     <string name="refresh">refresh</string>
+    <string name="delete">Delete</string>
+    <string name="delete_note">Delete Note</string>
+    <string name="delete_dialog_text">Are you sure you want to delete this note?</string>
+    <string name="no">NO</string>
+    <string name="yes">YES</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.upsoul.jittrnotes.view.fragments;
 
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -100,13 +102,14 @@ public class ViewNoteFragment extends Fragment {
         binding.toolBar.getNavigationIcon().setTint(color);
 
         //TODO: undo commenting when adding refresh button
-//        MenuItem favoriteItem = binding.toolBar.getMenu().findItem(R.id.menu_favourite);
-//        Drawable newIcon = favoriteItem.getIcon();
-//        newIcon.mutate().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
-//        favoriteItem.setIcon(newIcon);
+        MenuItem favoriteItem = binding.toolBar.getMenu().findItem(R.id.menu_delete);
+        Drawable newIcon = favoriteItem.getIcon();
+        newIcon.mutate().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        favoriteItem.setIcon(newIcon);
     }
 
     private void setupMenu(Menu menu){
+        menu.findItem(R.id.menu_refresh_color).setVisible(false);
         if (note.getPriority() == 1) {
             menu.findItem(R.id.menu_favourite).setIcon(R.drawable.ic_star_fill);
         }
@@ -123,6 +126,9 @@ public class ViewNoteFragment extends Fragment {
                 item.setIcon(R.drawable.ic_star);
             }
             return true;
+        } else if (item.getItemId() == R.id.menu_delete) {
+            ViewNoteFragmentDirections.ActionToDialog action = ViewNoteFragmentDirections.actionToDialog().setColor(note.getColor());
+            NavHostFragment.findNavController(this).navigate(action);
         }
         return super.onOptionsItemSelected(item);
     }

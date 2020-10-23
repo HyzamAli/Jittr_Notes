@@ -35,5 +35,19 @@
         android:id="@+id/viewNoteFragment"
         android:name="com.upsoul.jittrnotes.view.fragments.ViewNoteFragment"
         android:label="fragment_view_note"
-        tools:layout="@layout/fragment_view_note" />
+        tools:layout="@layout/fragment_view_note" >
+        <action
+            android:id="@+id/action_toDialog"
+            app:destination="@id/deleteNoteFragment"
+            app:launchSingleTop="true" />
+    </fragment>
+    <dialog
+        android:id="@+id/deleteNoteFragment"
+        android:name="com.upsoul.jittrnotes.view.fragments.DeleteNoteFragment"
+        android:label="DeleteNoteFragment" >
+        <argument
+            android:name="color"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </dialog>
 </navigation>

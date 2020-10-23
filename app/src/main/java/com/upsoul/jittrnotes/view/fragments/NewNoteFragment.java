@@ -5,6 +5,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,16 +43,19 @@ public class NewNoteFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.toolBar.inflateMenu(R.menu.menu_add_note);
+        setupMenu(binding.toolBar.getMenu());
+        binding.toolBar.setNavigationOnClickListener(view1 -> NavHostFragment.findNavController(this).popBackStack());
+        binding.toolBar.setOnMenuItemClickListener(this::onOptionsItemSelected);
         note = new Note(generateColorIndex());
         binding.setNote(note);
 
-        binding.toolBar.setNavigationOnClickListener(view1 -> NavHostFragment.findNavController(this).popBackStack());
-        binding.toolBar.setOnMenuItemClickListener(this::onOptionsItemSelected);
         binding.btnAddNote.setOnClickListener(view1 -> {
             hideKeyboard(requireActivity());
             addNote();
         });
     }
+
+
 
     @SuppressWarnings("ConstantConditions")
     private boolean validNote() {
@@ -67,7 +71,7 @@ public class NewNoteFragment extends Fragment {
     private void addNote() {
         if (!validNote()) return;
         viewModel.insertNewNote(note).observe(getViewLifecycleOwner(), response -> {
-            if (response.getStatus() == STATUS.SUCCESS) Toast.makeText(requireActivity(), "Successful", Toast.LENGTH_SHORT).show();
+            if (response.getStatus() == STATUS.SUCCESS) requireActivity().onBackPressed();
             if (response.getStatus() == STATUS.FAIL) Toast.makeText(requireActivity(), "Failed", Toast.LENGTH_SHORT).show();
         });
     }
@@ -107,6 +111,10 @@ public class NewNoteFragment extends Fragment {
     public void onDestroyView() {
         binding = null;
         super.onDestroyView();
+    }
+
+    private void setupMenu(Menu menu){
+        menu.findItem(R.id.menu_delete).setVisible(false);
     }
 
     @Override

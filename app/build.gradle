@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: "androidx.navigation.safeargs"
 
 android {
     compileSdkVersion 29
@@ -46,8 +47,8 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:2.2.5"
 
     //Jetpack - Navigation
-    implementation "androidx.navigation:navigation-fragment:2.3.0"
-    implementation "androidx.navigation:navigation-ui:2.3.0"
+    implementation "androidx.navigation:navigation-fragment:2.3.1"
+    implementation "androidx.navigation:navigation-ui:2.3.1"
 
     //Jetpack - View model and Live data
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
@@ -56,5 +57,4 @@ dependencies {
 
     //Material library
     implementation 'com.google.android.material:material:1.2.1'
-
 }
