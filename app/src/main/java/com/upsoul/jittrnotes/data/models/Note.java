@@ -3,6 +3,7 @@ package com.upsoul.jittrnotes.data.models;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -52,6 +53,10 @@ public class Note {
 
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getId() {
@@ -104,5 +109,20 @@ public class Note {
         this.priority = 0;
         this.color = color;
         time_stamp = System.currentTimeMillis();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Note note = (Note) o;
+        return  priority == note.priority &&
+                Objects.equals(title, note.title) &&
+                Objects.equals(description, note.description);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, description, priority);
     }
 }

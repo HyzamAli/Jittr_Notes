@@ -115,7 +115,7 @@
                     android:inputType="textCapSentences|textMultiLine"
                     android:isScrollContainer="true"
                     app:fontFamily="@font/poppins_med"
-                    android:maxLength="700"
+                    android:maxLength="1000"
                     android:textSize="17sp"
                     android:textColor="@color/white"
                     android:textCursorDrawable="@drawable/cursor_bg"

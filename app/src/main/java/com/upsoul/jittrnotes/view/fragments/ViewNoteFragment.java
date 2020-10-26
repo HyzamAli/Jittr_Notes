@@ -1,5 +1,6 @@
 package com.upsoul.jittrnotes.view.fragments;
 
+import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.upsoul.jittrnotes.R;
@@ -40,11 +42,14 @@ public class ViewNoteFragment extends Fragment {
         requireActivity().getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                String newTitle = binding.titleText.getText().toString().trim();
-                String newDescription = binding.descriptionText.getText().toString().trim();
-                if (isUpdated(newTitle, newDescription)) {
-                    note.setTitle(newTitle);
-                    note.setDescription(newDescription);
+                hideKeyboard(requireActivity());
+                note.setTitle(binding.titleText.getText().toString().trim());
+                note.setDescription(binding.descriptionText.getText().toString().trim());
+
+                if (note.getTitle().isEmpty() && note.getDescription().isEmpty()) {
+                    deleteNote();
+                } else if (!note.equals(viewModel.getCurrentNote())) {
+                    note.setId(viewModel.getCurrentNote().getId());
                     note.setTime_stamp(System.currentTimeMillis());
                     note.setDate(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Calendar.getInstance().getTime()));
                     viewModel.updateNote(note);
@@ -54,24 +59,12 @@ public class ViewNoteFragment extends Fragment {
         });
     }
 
-    //TODO: add logic to check if title and description is empty
-    @SuppressWarnings("RedundantIfStatement")
-    private boolean isUpdated(String newTitle, String newDescription) {
-
-        if (newTitle.isEmpty() && newDescription.isEmpty()) {
-            deleteNote();
-            return false;
-        }
-        if (newTitle.equals(note.getTitle()) && newDescription.equals(note.getDescription())) {
-            return false;
-        }
-        return true;
-    }
-
     private void deleteNote() {
-        viewModel.deleteNote(note).observe(getViewLifecycleOwner(), response -> {
+        viewModel.deleteNote(viewModel.getCurrentNote()).observe(getViewLifecycleOwner(), response -> {
             if (response.getStatus() == STATUS.FAIL) {
                 Toast.makeText(requireContext(),"Failed To Delete", Toast.LENGTH_LONG).show();
+            } else {
+                viewModel.setCurrentNote(null);
             }
         });
     }
@@ -81,7 +74,8 @@ public class ViewNoteFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewModel = new ViewModelProvider(requireActivity()).get(NotesViewModel.class);
-        note = viewModel.getCurrentNote();
+        note = new Note(viewModel.getCurrentNote().getColor());
+        note.setPriority(viewModel.getCurrentNote().getPriority());
         binding = FragmentViewNoteBinding.inflate(getLayoutInflater(), container, false);
         return binding.getRoot();
     }
@@ -93,7 +87,7 @@ public class ViewNoteFragment extends Fragment {
         setupMenu(binding.toolBar.getMenu());
         binding.toolBar.setOnMenuItemClickListener(this::onOptionsItemSelected);
         setColors(getResources().getIntArray(R.array.colors_list)[note.getColor()]);
-        binding.setNote(note);
+        binding.setNote(viewModel.getCurrentNote());
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -137,6 +131,16 @@ public class ViewNoteFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public static void hideKeyboard(Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = activity.getCurrentFocus();
+        if (view == null) {
+            view = new View(activity);
+        }
+        //noinspection ConstantConditions
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
 }
