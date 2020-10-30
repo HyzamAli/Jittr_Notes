@@ -25,6 +25,9 @@
             app:launchSingleTop="true"
             app:popEnterAnim="@anim/anim_no_change"
             app:popExitAnim="@anim/anim_slide_out_right" />
+        <action
+            android:id="@+id/action_toSettings"
+            app:destination="@id/settingsSheet" />
     </fragment>
     <fragment
         android:id="@+id/newNoteFragment"
@@ -50,4 +53,8 @@
             app:argType="integer"
             android:defaultValue="0" />
     </dialog>
+    <dialog
+        android:id="@+id/settingsSheet"
+        android:name="com.upsoul.jittrnotes.view.fragments.SettingsSheet"
+        android:label="SettingsSheet" />
 </navigation>

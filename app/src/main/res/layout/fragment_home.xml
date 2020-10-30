@@ -52,17 +52,18 @@
 
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSettings"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     app:iconTint="@color/black"
-                    app:iconGravity="end"
-                    android:text=""
+                    app:iconGravity="textStart"
                     app:icon="@drawable/ic_baseline_menu_24"
+                    app:rippleColor="@android:color/darker_gray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/button" />
+                    android:contentDescription="@string/settings" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

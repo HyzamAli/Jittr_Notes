@@ -41,6 +41,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         getAllNotes();
         binding.btnNew.setOnClickListener(view1 ->  NavHostFragment.findNavController(this).navigate(R.id.action_toNewNote));
+        binding.btnSettings.setOnClickListener(view1 -> NavHostFragment.findNavController(this).navigate(R.id.action_toSettings));
     }
 
     @Override

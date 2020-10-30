@@ -17,4 +17,13 @@
     <string name="delete_dialog_text">Are you sure you want to delete this note?</string>
     <string name="no">NO</string>
     <string name="yes">YES</string>
+    <string name="set_dark_theme">Set Dark Theme</string>
+    <string name="setup_pin">Setup PIN</string>
+    <string name="view_github_code">View Github code</string>
+    <string name="rate_app">Rate App</string>
+    <string name="settings">settings</string>
+    <string name="enable_pin">Enable PIN</string>
+    <string name="pin_hint">Pin will be asked during app launch</string>
+    <string name="enter_6_digit_pin">Enter 6 digit PIN</string>
+    <string name="confirm_pin">Confirm PIN</string>
 </resources>
