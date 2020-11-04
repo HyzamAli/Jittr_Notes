@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.upsoul.jittrnotes">
 
     <application
         android:allowBackup="false"
-        tools:replace="android:allowBackup"
         android:icon="@mipmap/ic_launch_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launch_icon_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".view.activities.HomeActivity"
-            android:windowSoftInputMode="adjustResize">
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup">
+        <activity
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"
+            android:name=".view.activities.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:name=".view.activities.HomeActivity"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>

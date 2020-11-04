@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/launch_graph"
+    app:startDestination="@id/pinFragment">
+
+    <fragment
+        android:id="@+id/pinFragment"
+        android:name="com.upsoul.jittrnotes.view.fragments.PinFragment"
+        android:label="fragment_pin"
+        tools:layout="@layout/fragment_pin" >
+        <action
+            android:id="@+id/action_toHome"
+            app:destination="@id/homeActivity"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/pinFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <activity
+        android:id="@+id/homeActivity"
+        android:name="com.upsoul.jittrnotes.view.activities.HomeActivity"
+        android:label="activity_home"
+        tools:layout="@layout/activity_home" />
+</navigation>

@@ -1,6 +1,9 @@
 package com.upsoul.jittrnotes.viewmodel;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import com.upsoul.jittrnotes.data.models.Note;
 import com.upsoul.jittrnotes.data.models.Response;
@@ -54,5 +57,28 @@ public class NotesViewModel extends AndroidViewModel {
 
     public LiveData<Response<List<Note>>> getAllNotes() {
         return repository.getAllNotes();
+    }
+
+    public String getPinFromSP() {
+        SharedPreferences sharedPreferences = getApplication().getSharedPreferences("", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("PIN", null);
+    }
+
+    public boolean setPinToSP(String pin) {
+        if (pin.isEmpty() || !TextUtils.isDigitsOnly(pin) || pin.length() !=6) {
+            return false;
+        }
+        SharedPreferences sharedPreferences = getApplication().getSharedPreferences("", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("PIN", pin);
+        editor.apply();
+        return true;
+    }
+
+    public void removePIN() {
+        SharedPreferences sharedPreferences = getApplication().getSharedPreferences("", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("PIN");
+        editor.apply();
     }
 }

@@ -56,5 +56,14 @@
     <dialog
         android:id="@+id/settingsSheet"
         android:name="com.upsoul.jittrnotes.view.fragments.SettingsSheet"
-        android:label="SettingsSheet" />
+        android:label="SettingsSheet" >
+        <action
+            android:id="@+id/action_toPin"
+            app:destination="@id/securityFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/securityFragment"
+        android:name="com.upsoul.jittrnotes.view.fragments.SecurityFragment"
+        android:label="fragment_security"
+        tools:layout="@layout/fragment_security" />
 </navigation>

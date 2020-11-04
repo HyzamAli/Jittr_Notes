@@ -8,6 +8,7 @@
     tools:context=".view.fragments.SecurityFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:navigationIcon="@drawable/ic_left_arrow"/>
@@ -36,6 +37,7 @@
                 android:text="@string/enable_pin"/>
 
             <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchEnabled"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -55,6 +57,8 @@
             android:text="@string/pin_hint"/>
 
         <com.google.android.material.textfield.TextInputLayout
+            app:passwordToggleEnabled="true"
+            android:id="@+id/passwordBox"
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -62,17 +66,21 @@
             app:boxCornerRadiusBottomEnd="15dp"
             app:boxCornerRadiusBottomStart="15dp"
             app:boxCornerRadiusTopEnd="15dp"
+            app:hintTextColor="@color/colorAccent"
             app:boxStrokeWidth="2dp"
             app:boxStrokeColor="@color/colorAccent"
             android:hint="@string/enter_6_digit_pin"
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:inputType="number"
+                android:inputType="numberPassword"
+                android:maxLength="6"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/confirmPasswordBox"
+            app:passwordToggleEnabled="true"
             android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -80,24 +88,27 @@
             app:boxCornerRadiusBottomEnd="15dp"
             app:boxCornerRadiusBottomStart="15dp"
             app:boxCornerRadiusTopEnd="15dp"
+            app:hintTextColor="@color/colorAccent"
             app:boxStrokeWidth="2dp"
             app:boxStrokeColor="@color/colorAccent"
             android:hint="@string/confirm_pin"
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:inputType="number"
+                android:inputType="numberPassword"
+                android:maxLength="6"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnDone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         app:backgroundTint="@color/colorAccent"
-        android:src="@drawable/ic_done_white"
-        android:tint="@color/white"
+        android:src="@drawable/ic_done"
+        app:tint="@color/white"
         android:layout_margin="16dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

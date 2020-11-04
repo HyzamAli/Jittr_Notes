@@ -79,15 +79,20 @@ public class HomeFragment extends Fragment {
                     }
                 }
 
-                //TODO: view when no starred notes are found
+                //TODO: update screen when no notes are available
                 binding.allNotesList.setAdapter(new NotesListAdapter(response.getData(), position -> {
                     viewModel.setCurrentNote(response.getData().get(position));
                     NavHostFragment.findNavController(this).navigate(R.id.action_toViewNote);
                 }));
-                binding.starredNotesList.setAdapter(new NotesListAdapter(starredNotes, position -> {
-                    viewModel.setCurrentNote(starredNotes.get(position));
-                    NavHostFragment.findNavController(this).navigate(R.id.action_toViewNote);
-                }));
+
+                if (starredNotes.size() == 0) {
+                    binding.starredTitle.setVisibility(View.GONE);
+                } else {
+                    binding.starredNotesList.setAdapter(new NotesListAdapter(starredNotes, position -> {
+                        viewModel.setCurrentNote(starredNotes.get(position));
+                        NavHostFragment.findNavController(this).navigate(R.id.action_toViewNote);
+                    }));
+                }
 
 
             } else {

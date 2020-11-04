@@ -10,7 +10,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp"
+            android:padding="10dp"
             android:orientation="vertical">
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
@@ -20,15 +20,22 @@
                 app:fontFamily="@font/poppins_sb"
                 android:gravity="start|center_vertical"
                 android:textAllCaps="false"
+                app:icon="@drawable/ic_style"
+                app:iconPadding="10dp"
+                app:iconTint="@android:color/darker_gray"
                 app:rippleColor="@android:color/darker_gray"
                 android:textColor="@color/black"/>
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:text="@string/setup_pin"
                 app:fontFamily="@font/poppins_sb"
                 android:gravity="start|center_vertical"
+                app:iconPadding="10dp"
+                app:icon="@drawable/ic_lock"
+                app:iconTint="@android:color/darker_gray"
                 android:textAllCaps="false"
                 app:rippleColor="@android:color/darker_gray"
                 android:textColor="@color/black"/>
@@ -38,6 +45,9 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:text="@string/view_github_code"
                 app:fontFamily="@font/poppins_sb"
+                app:iconPadding="10dp"
+                app:icon="@drawable/ic_code"
+                app:iconTint="@android:color/darker_gray"
                 android:gravity="start|center_vertical"
                 android:textAllCaps="false"
                 app:rippleColor="@android:color/darker_gray"
@@ -47,7 +57,10 @@
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:text="@string/rate_app"
+                app:iconPadding="10dp"
                 app:fontFamily="@font/poppins_sb"
+                app:icon="@drawable/ic_star_baseline"
+                app:iconTint="@android:color/darker_gray"
                 android:textAllCaps="false"
                 app:rippleColor="@android:color/darker_gray"
                 android:gravity="start|center_vertical"
