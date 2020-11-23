@@ -11,6 +11,7 @@ import android.view.inputmethod.EditorInfo;
 import com.google.android.material.snackbar.Snackbar;
 import com.upsoul.jittrnotes.R;
 import com.upsoul.jittrnotes.databinding.FragmentPinBinding;
+import com.upsoul.jittrnotes.services.HideKeyboardService;
 import com.upsoul.jittrnotes.viewmodel.LauncherViewModel;
 
 import androidx.annotation.NonNull;
@@ -21,7 +22,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 
 @SuppressWarnings("ConstantConditions")
-public class PinFragment extends Fragment {
+public class PinFragment extends Fragment implements HideKeyboardService {
     private FragmentPinBinding binding;
     private LauncherViewModel viewModel;
 
@@ -59,6 +60,7 @@ public class PinFragment extends Fragment {
         });
 
         binding.btnSubmit.setOnClickListener(view1 -> {
+            this.hideKeyboard(requireActivity());
             binding.pinBox.clearFocus();
             String pin = binding.pinBox.getEditText().getText().toString().trim();
             if (TextUtils.isEmpty(pin)) {

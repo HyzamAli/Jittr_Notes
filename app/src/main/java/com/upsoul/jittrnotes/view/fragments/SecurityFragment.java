@@ -1,16 +1,15 @@
 package com.upsoul.jittrnotes.view.fragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.upsoul.jittrnotes.databinding.FragmentSecurityBinding;
+import com.upsoul.jittrnotes.services.HideKeyboardService;
 import com.upsoul.jittrnotes.viewmodel.NotesViewModel;
 
 import androidx.annotation.NonNull;
@@ -18,7 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-public class SecurityFragment extends Fragment implements CompoundButton.OnCheckedChangeListener {
+public class SecurityFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, HideKeyboardService {
     private FragmentSecurityBinding binding;
     private NotesViewModel viewModel;
 
@@ -94,22 +93,12 @@ public class SecurityFragment extends Fragment implements CompoundButton.OnCheck
             return;
         }
 
-        hideKeyboard(requireActivity());
+        this.hideKeyboard(requireActivity());
         if (viewModel.setPinToSP(password)) {
             Snackbar.make(binding.getRoot(),"PIN Successfully set", Snackbar.LENGTH_SHORT).show();
         } else {
             Snackbar.make(binding.getRoot(),"PIN setup failed", Snackbar.LENGTH_SHORT).show();
         }
-    }
-
-    public static void hideKeyboard(Activity activity) {
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        View view = activity.getCurrentFocus();
-        if (view == null) {
-            view = new View(activity);
-        }
-        //noinspection ConstantConditions
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     @Override

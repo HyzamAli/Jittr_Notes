@@ -1,6 +1,5 @@
 package com.upsoul.jittrnotes.view.fragments;
 
-import android.app.Activity;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -9,13 +8,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.upsoul.jittrnotes.R;
 import com.upsoul.jittrnotes.data.models.Note;
 import com.upsoul.jittrnotes.data.models.STATUS;
 import com.upsoul.jittrnotes.databinding.FragmentViewNoteBinding;
+import com.upsoul.jittrnotes.services.HideKeyboardService;
 import com.upsoul.jittrnotes.viewmodel.NotesViewModel;
 
 import java.text.SimpleDateFormat;
@@ -30,7 +29,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 
 
-public class ViewNoteFragment extends Fragment {
+public class ViewNoteFragment extends Fragment implements HideKeyboardService {
     private FragmentViewNoteBinding binding;
     private NotesViewModel viewModel;
     private Note note;
@@ -131,16 +130,6 @@ public class ViewNoteFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    public static void hideKeyboard(Activity activity) {
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        View view = activity.getCurrentFocus();
-        if (view == null) {
-            view = new View(activity);
-        }
-        //noinspection ConstantConditions
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
 }

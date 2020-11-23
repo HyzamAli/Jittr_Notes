@@ -40,6 +40,7 @@
                 app:rippleColor="@android:color/darker_gray"
                 android:textColor="@color/black"/>
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGithub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -53,6 +54,7 @@
                 app:rippleColor="@android:color/darker_gray"
                 android:textColor="@color/black"/>
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
