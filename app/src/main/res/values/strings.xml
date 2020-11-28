@@ -28,4 +28,5 @@
     <string name="confirm_pin">Confirm PIN</string>
     <string name="enter_pin_here">Enter PIN here</string>
     <string name="welcome_back">Welcome Back!</string>
+    <string name="empty_note_filler">No Notes Found,\nStart adding your Notes</string>
 </resources>

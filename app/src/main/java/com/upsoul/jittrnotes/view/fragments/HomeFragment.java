@@ -79,7 +79,13 @@ public class HomeFragment extends Fragment {
                     }
                 }
 
-                //TODO: update screen when no notes are available
+                if (response.getData().size() == 0) {
+                    binding.allNotesTitle.setVisibility(View.GONE);
+                    binding.starredTitle.setVisibility(View.GONE);
+                    binding.emptyNotesFiller.setVisibility(View.VISIBLE);
+                    return;
+                }
+
                 binding.allNotesList.setAdapter(new NotesListAdapter(response.getData(), position -> {
                     viewModel.setCurrentNote(response.getData().get(position));
                     NavHostFragment.findNavController(this).navigate(R.id.action_toViewNote);

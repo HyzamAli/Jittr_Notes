@@ -106,7 +106,7 @@ public class Note {
         this.title = "";
         this.description = "";
         this.date = new SimpleDateFormat("dd-MM-yyyy",Locale.getDefault()).format(Calendar.getInstance().getTime());
-        this.priority = 1;
+        this.priority = 0;
         this.color = color;
         time_stamp = System.currentTimeMillis();
     }

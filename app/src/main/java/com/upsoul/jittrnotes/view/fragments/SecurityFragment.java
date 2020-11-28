@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 
 public class SecurityFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, HideKeyboardService {
     private FragmentSecurityBinding binding;
@@ -32,7 +33,7 @@ public class SecurityFragment extends Fragment implements CompoundButton.OnCheck
     @SuppressWarnings("ConstantConditions")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        binding.toolBar.setNavigationOnClickListener(view1 ->requireActivity().onBackPressed());
+        binding.toolBar.setNavigationOnClickListener(view1 -> NavHostFragment.findNavController(this).popBackStack());
         setupPage(viewModel.getPinFromSP());
 
         binding.switchEnabled.setOnCheckedChangeListener(this);

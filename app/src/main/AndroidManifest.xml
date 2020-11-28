@@ -9,7 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launch_icon_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/LightTheme"
         tools:replace="android:allowBackup">
         <activity
             android:screenOrientation="portrait"

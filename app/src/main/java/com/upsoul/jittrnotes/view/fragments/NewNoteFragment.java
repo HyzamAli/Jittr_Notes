@@ -19,6 +19,7 @@ import com.upsoul.jittrnotes.viewmodel.NotesViewModel;
 
 import java.util.Random;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -39,11 +40,23 @@ public class NewNoteFragment extends Fragment implements HideKeyboardService {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requireActivity().getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                hideKeyboard(requireActivity());
+                addNote();
+            }
+        });
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.toolBar.inflateMenu(R.menu.menu_add_note);
         setupMenu(binding.toolBar.getMenu());
-        binding.toolBar.setNavigationOnClickListener(view1 -> NavHostFragment.findNavController(this).popBackStack());
+        binding.toolBar.setNavigationOnClickListener(view1 -> requireActivity().onBackPressed());
         binding.toolBar.setOnMenuItemClickListener(this::onOptionsItemSelected);
         note = new Note(generateColorIndex());
         binding.setNote(note);
@@ -85,9 +98,12 @@ public class NewNoteFragment extends Fragment implements HideKeyboardService {
     }
 
     private void addNote() {
-        if (!validNote()) return;
+        if (!validNote()) {
+            NavHostFragment.findNavController(this).popBackStack();
+            return;
+        }
         viewModel.insertNewNote(note).observe(getViewLifecycleOwner(), response -> {
-            if (response.getStatus() == STATUS.SUCCESS) requireActivity().onBackPressed();
+            if (response.getStatus() == STATUS.SUCCESS) NavHostFragment.findNavController(this).popBackStack();
             if (response.getStatus() == STATUS.FAIL) Toast.makeText(requireActivity(), "Failed", Toast.LENGTH_SHORT).show();
         });
     }
