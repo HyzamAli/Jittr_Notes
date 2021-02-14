@@ -6,6 +6,7 @@
     <color name="white">#ffffff</color>
     <color name="white_transparent">#CCffffff</color>
     <color name="black">#000000</color>
+    <color name="task_Card">#FF6A6A</color>
 
     <color name="p1">#a5a58d</color>
     <color name="p2">#b5838d</color>

@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".view.fragments.HomeFragment">
 
+
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -66,6 +68,26 @@
                     android:contentDescription="@string/settings" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTasks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/no_tasks_text"
+                android:gravity="start|center_vertical"
+                app:icon="@drawable/ic_right_arrow"
+                app:iconGravity="end"
+                android:textAllCaps="false"
+                app:iconSize="27dp"
+                android:textSize="16sp"
+                app:fontFamily="@font/poppins_sb"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="20dp"
+                app:cornerRadius="16dp"
+                android:paddingBottom="20dp"
+                app:backgroundTint="@color/task_Card"
+                android:layout_marginBottom="16dp"/>
 
             <TextView
                 android:id="@+id/starredTitle"

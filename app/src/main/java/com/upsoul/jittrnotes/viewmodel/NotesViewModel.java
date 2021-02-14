@@ -50,7 +50,6 @@ public class NotesViewModel extends AndroidViewModel {
 
     public LiveData<Response<Integer>> insertNewNote(Note note) { return repository.insertNewNote(note); }
 
-    //TODO: check Live data response
     public LiveData<Response<Integer>> updateNote(Note note) { return repository.updateNote(note); }
 
     public LiveData<Response<Integer>> deleteNote(Note note) { return repository.deleteNote(note); }

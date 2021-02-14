@@ -51,7 +51,11 @@ public class ViewNoteFragment extends Fragment implements HideKeyboardService {
                     note.setId(viewModel.getCurrentNote().getId());
                     note.setTime_stamp(System.currentTimeMillis());
                     note.setDate(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Calendar.getInstance().getTime()));
-                    viewModel.updateNote(note);
+                    viewModel.updateNote(note).observe(getViewLifecycleOwner(), response -> {
+                        if (response.getStatus() != STATUS.SUCCESS) {
+                            Toast.makeText(requireContext(),"Failed To Update", Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
                 NavHostFragment.findNavController(getParentFragment()).popBackStack();
             }
@@ -94,7 +98,6 @@ public class ViewNoteFragment extends Fragment implements HideKeyboardService {
         binding.getRoot().setBackgroundColor(color);
         binding.toolBar.getNavigationIcon().setTint(color);
 
-        //TODO: undo commenting when adding refresh button
         MenuItem favoriteItem = binding.toolBar.getMenu().findItem(R.id.menu_delete);
         Drawable newIcon = favoriteItem.getIcon();
         newIcon.mutate().setColorFilter(color, PorterDuff.Mode.SRC_ATOP);

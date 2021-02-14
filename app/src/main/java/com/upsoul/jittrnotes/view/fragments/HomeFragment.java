@@ -40,8 +40,12 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getAllNotes();
+
+        //TODO: update task card text
+        //setupTaskCard();
         binding.btnNew.setOnClickListener(view1 ->  NavHostFragment.findNavController(this).navigate(R.id.action_toNewNote));
         binding.btnSettings.setOnClickListener(view1 -> NavHostFragment.findNavController(this).navigate(R.id.action_toSettings));
+        binding.btnTasks.setOnClickListener(view1 -> NavHostFragment.findNavController(this).navigate(R.id.action_toTasks));
     }
 
     @Override
