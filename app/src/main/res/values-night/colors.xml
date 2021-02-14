@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">@color/white</color>
-    <color name="colorPrimaryDark">@color/white</color>
+    <color name="colorPrimary">@color/black</color>
+    <color name="colorPrimaryDark">@color/black</color>
     <color name="colorAccent">#0C365A</color>
     <color name="white">#ffffff</color>
     <color name="white_transparent">#CCffffff</color>
     <color name="black">#000000</color>
     <color name="task_Card">#FF6A6A</color>
-    <color name="background">@color/white</color>
+    <color name="background">@color/black</color>
 
     <color name="p1">#a5a58d</color>
     <color name="p2">#b5838d</color>

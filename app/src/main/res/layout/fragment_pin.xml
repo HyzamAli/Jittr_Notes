@@ -31,7 +31,7 @@
             android:textAlignment="center"
             android:textSize="21sp"
             app:fontFamily="@font/poppins_sb"
-            android:textColor="@color/black"
+            android:textColor="?attr/colorOnSurface"
             android:text="@string/welcome_back"/>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -41,7 +41,6 @@
             app:boxStrokeWidth="2dp"
             app:boxStrokeColor="@color/colorAccent"
             app:boxBackgroundMode="filled"
-            app:boxBackgroundColor="@color/white"
             android:layout_marginTop="30dp"
             android:hint="@string/enter_pin_here"
             app:passwordToggleEnabled="true"

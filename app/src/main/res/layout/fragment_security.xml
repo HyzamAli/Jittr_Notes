@@ -11,6 +11,7 @@
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        app:navigationIconTint="?attr/colorOnSurface"
         app:navigationIcon="@drawable/ic_left_arrow"/>
 
     <LinearLayout
@@ -32,7 +33,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:textSize="17sp"
                 app:fontFamily="@font/poppins_sb"
-                android:textColor="@color/black"
+                android:textColor="?attr/colorOnSurface"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:text="@string/enable_pin"/>
 

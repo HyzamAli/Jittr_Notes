@@ -25,9 +25,10 @@
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolBar"
-                android:background="@android:color/white"
+                android:background="?attr/colorSurface"
                 android:elevation="4dp"
                 android:layout_width="match_parent"
+                android:backgroundTint="?attr/colorSurface"
                 app:layout_constraintTop_toTopOf="parent"
                 app:navigationIcon="@drawable/ic_left_arrow"
                 tools:menu="@menu/menu_add_note"

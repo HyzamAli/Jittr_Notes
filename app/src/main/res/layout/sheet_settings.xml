@@ -22,9 +22,9 @@
                 android:textAllCaps="false"
                 app:icon="@drawable/ic_style"
                 app:iconPadding="10dp"
-                app:iconTint="@android:color/darker_gray"
+                app:iconTint="?attr/colorOnSurface"
                 app:rippleColor="@android:color/darker_gray"
-                android:textColor="@color/black"/>
+                android:textColor="?attr/colorOnSurface"/>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPin"
                 android:layout_width="match_parent"
@@ -35,10 +35,10 @@
                 android:gravity="start|center_vertical"
                 app:iconPadding="10dp"
                 app:icon="@drawable/ic_lock"
-                app:iconTint="@android:color/darker_gray"
+                app:iconTint="?attr/colorOnSurface"
                 android:textAllCaps="false"
                 app:rippleColor="@android:color/darker_gray"
-                android:textColor="@color/black"/>
+                android:textColor="?attr/colorOnSurface"/>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnGithub"
                 android:layout_width="match_parent"
@@ -48,11 +48,11 @@
                 app:fontFamily="@font/poppins_sb"
                 app:iconPadding="10dp"
                 app:icon="@drawable/ic_code"
-                app:iconTint="@android:color/darker_gray"
+                app:iconTint="?attr/colorOnSurface"
                 android:gravity="start|center_vertical"
                 android:textAllCaps="false"
                 app:rippleColor="@android:color/darker_gray"
-                android:textColor="@color/black"/>
+                android:textColor="?attr/colorOnSurface"/>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRate"
                 android:layout_width="match_parent"
@@ -62,10 +62,10 @@
                 app:iconPadding="10dp"
                 app:fontFamily="@font/poppins_sb"
                 app:icon="@drawable/ic_star_baseline"
-                app:iconTint="@android:color/darker_gray"
+                app:iconTint="?attr/colorOnSurface"
                 android:textAllCaps="false"
                 app:rippleColor="@android:color/darker_gray"
                 android:gravity="start|center_vertical"
-                android:textColor="@color/black"/>
+                android:textColor="?attr/colorOnSurface"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
