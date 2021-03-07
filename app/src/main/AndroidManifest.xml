@@ -14,6 +14,7 @@
         <activity
             android:screenOrientation="portrait"
             android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize"
             android:name=".view.activities.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

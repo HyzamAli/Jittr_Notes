@@ -8,6 +8,7 @@
     android:layout_marginStart="18dp"
     android:layout_marginEnd="18dp"
     android:orientation="vertical"
+    android:background="?attr/colorSurface"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
         <androidx.cardview.widget.CardView
@@ -37,20 +38,21 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/pinBox"
             android:layout_width="match_parent"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             app:boxStrokeWidth="2dp"
-            app:boxStrokeColor="@color/colorAccent"
             app:boxBackgroundMode="filled"
             android:layout_marginTop="30dp"
             android:hint="@string/enter_pin_here"
+            app:boxStrokeColor="?attr/colorOnSurface"
+            app:hintTextColor="?attr/colorOnSurface"
             app:passwordToggleEnabled="true"
-            app:hintTextColor="@color/colorAccent"
             android:layout_height="wrap_content">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:inputType="numberPassword"
                 android:maxLength="6"
                 android:imeOptions="actionDone"
+                android:textCursorDrawable="?attr/colorOnSurface"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -59,10 +61,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:contentDescription="@string/icon"
             app:elevation="2dp"
             android:src="@drawable/ic_done"
-            app:backgroundTint="@color/colorAccent"
-            app:tint="@color/white"
+            app:tint="?attr/colorSurface"
             android:layout_gravity="end"/>
 
 

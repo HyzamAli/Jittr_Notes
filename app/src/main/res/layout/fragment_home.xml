@@ -9,8 +9,7 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/background">
+        android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -40,7 +39,7 @@
                 tools:text="Good\nMorning"
                 app:fontFamily="@font/poppins_sb"
                 android:layout_marginStart="7dp"
-                android:textColor="?attr/colorOnSurface"
+                android:textColor="@android:color/white"
                 android:textSize="21sp"/>
 
 
@@ -48,7 +47,7 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSettings"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
-                app:iconTint="?attr/colorOnSurface"
+                app:iconTint="@android:color/white"
                 app:iconGravity="textStart"
                 app:icon="@drawable/ic_baseline_menu_24"
                 app:rippleColor="@android:color/darker_gray"
@@ -66,7 +65,6 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/background"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
@@ -173,8 +171,8 @@
         app:icon="@drawable/ic_add"
         android:layout_marginBottom="15dp"
         app:backgroundTint="@color/colorAccent"
-        android:textColor="@color/white"
-        app:iconTint="@color/white"
+        android:textColor="?attr/colorSurface"
+        app:iconTint="?attr/colorSurface"
         android:textSize="15sp"
         app:iconGravity="textStart"
         app:iconPadding="4dp"
